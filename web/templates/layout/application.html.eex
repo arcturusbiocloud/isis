@@ -7,25 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Phoenix!</title>
-    <link rel="stylesheet" href="/css/phoenix.css">
+    <title>Arcturus BioCloud - <%= @title %></title>
+    
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <link href='/images/default.png' rel='apple-touch-icon-precomposed'>
+    <link href="/css/dist/semantic.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
   </head>
 
-  <body>
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-        </ul>
-        <span class="logo"></span>
-      </div>
-
-      <%= @inner %>
-
-      <div class="footer">
-        <p><a href="http://phoenixframework.org">phoenixframework.org</a></p>
-      </div>
-
-    </div> <!-- /container -->
+  <body id="main">
+<%= @inner %>
   </body>
 </html>

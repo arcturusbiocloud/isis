@@ -11,7 +11,7 @@ config :isis, Isis.Endpoint,
   http: [port: System.get_env("PORT")],
   secret_key_base: "GUcEIFLP0X/D4BvgBhzF/7KAzA8dwYXC4/mF/EpaIEvXEAchj9Shg6BSrMeonEom",
   debug_errors: false
-
+  
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

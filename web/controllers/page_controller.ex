@@ -1,9 +1,9 @@
 defmodule Isis.PageController do
-  use Phoenix.Controller
+  use Isis.Helper.Application
 
   plug :action
 
   def index(conn, _params) do
-    render conn, "index.html"
+    render conn, "index.html", %{title: "Welcome"}
   end
 end

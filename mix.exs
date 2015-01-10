@@ -56,7 +56,7 @@ defmodule Isis.Mixfile do
   defp deps(:test) do
     deps ++ [
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.1", optional: true},
-      {:hound, "~> 0.5.8"},
+      {:hound, "~> 0.6.0"},
       {:factory_girl_elixir, "~> 0.1.1"}
     ]
   end

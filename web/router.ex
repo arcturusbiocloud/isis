@@ -14,6 +14,8 @@ defmodule Isis.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/login", SessionController, :new, as: :login
+    post "/login", SessionController, :create, as: :login
   end
 
   # Other scopes may use custom stacks.

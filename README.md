@@ -17,10 +17,22 @@ It communicates with the clusters of robots using the `arcturusbiocloud\horus`
   - [ ] docker/fleetctl based deployment
 
 
-## How to test
+## Tests
 
-    MIX_ENV=test mix do deps.get, compile
-    mix test
+You need to [download Selenium](http://docs.seleniumhq.org/download/) and start it:
+
+```
+java -jar selenium-server-standalone-2.42.2.jar
+```
+
+Fetch the test dependencies using:
+```
+MIX_ENV=test mix do deps.get
+```
+and then exec the tests:
+```
+mix test
+```
 
     
 ## How to start

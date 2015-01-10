@@ -1,0 +1,87 @@
+    <div class="login-form">
+      <div class="ui one column stackable center aligned page grid">
+        <div class="column nine wide">
+          <form class="ui form segment left aligned" action="/login" method="post">
+            <div class="ui icon header blue center aligned">
+              <img src="/images/arcturus-logo-shadown.jpg" alt="Arcturus BioCloud logo">
+              <!-- <img src="/images/arcturus-logo-flat.png" alt="Arcturus BioCloud logo"> -->
+
+              <div class="content">
+                Log In
+                <div class="sub header">Access your Arcturus BioCloud dashboard</div>   
+              </div>
+            </div>
+            
+            <%= for warning <- Flash.get_all(@conn, :warning) do %>
+            <div class="ui negative small message">
+              <i class="close icon"></i>
+              <div class="header" id="warning-message">
+                <%= warning %>
+              </div>
+              <p>The password or email you entered is incorrect. Please try again (make sure your caps lock is off).</p>
+            </div>
+            <% end %>
+  
+            <div class="field">
+              <label for="Email">Email</label>
+              <input type="text" id="Email" name="email" placeholder="Email" >
+            </div>
+
+            <div class="field">
+              <label for="Password">Password</label>
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" id="Password" name="password">
+              </div>
+            </div>
+
+            <div class="center aligned column">
+              <div class="ui buttons">
+                <!-- <a class="ui blue submit button">Log In</a> -->
+                <input type="submit" class="ui blue button" name="submit" value="Log In"/>
+                <div class="or"></div>
+                <a class="ui green button" href="signup.html">Sign Up</a>
+              </div>
+            </div>
+          </form>           
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/jquery-1.11.2.min.js"></script>
+    <script src="/css/dist/semantic.min.js"></script>
+    <script>
+      (function ($) {
+        
+        $('.ui.form').form({             
+          email: {
+            identifier: 'Email',
+            rules: [{
+              type: 'empty',
+              prompt: 'Please enter your email'
+            },{
+              type: 'email',
+              prompt: 'Please enter a valid email'
+            }]
+          },   
+          password: {
+            identifier: 'Password',
+            rules: [{
+              type: 'empty',
+              prompt: 'Please enter a password'
+            },{
+              type: 'length[6]',
+              prompt: 'Password needs to be at least 6 characters long'
+            }]
+          }
+        }, {
+          on: 'blur',
+          inline: 'true'
+        });
+        
+        $(".close.icon").click(function(){
+          $(this).parent().hide();
+        });
+        
+      }(jQuery));
+    </script>
