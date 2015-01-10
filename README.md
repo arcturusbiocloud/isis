@@ -53,3 +53,6 @@ It communicates with the clusters of robots using the `arcturusbiocloud\horus`
 ### Streaming resources
   * http://www.raspberrypi.org/forums/viewtopic.php?f=43&t=45368
   * http://ftp.tuebingen.mpg.de/pub/kyb/towolf/raspberry-camera-streaming
+  
+  
+![Isis] (http://black.greyfalcon.us/pictures/al25.jpg)
