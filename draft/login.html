@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Arcturus BioCloud</title>
+
+  <link href='img/favicon.ico' rel='shortcut icon'>
+  <link href='img/default.png' rel='apple-touch-icon-precomposed'>
+  <link href="css/dist/semantic.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/main.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body id="main">
+  <div class="login-form">
+    <div class="ui one column stackable center aligned page grid">
+      <div class="column nine wide">
+        <div class="ui form segment left aligned">
+        
+          <div class="ui icon header blue center aligned">
+            <img src="img/arcturus-logo-shadown.jpg" alt="Arcturus BioCloud logo">
+            <!-- <img src="img/arcturus-logo-flat.png" alt="Arcturus BioCloud logo"> -->
+            <div class="content">
+              Log In
+              <div class="sub header">Access your Arcturus BioCloud dashboard</div>   
+            </div>
+          </div>
+                 
+          <div class="field">
+            <label for="Email">Email</label>
+            <input id="Email" placeholder="Email" type="text">
+          </div>
+
+
+          <div class="field">
+            <label for="Password">Password</label>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input id="Password" type="password">
+            </div>
+          </div>
+          
+              
+          <div class="center aligned column">
+            <!-- <button class="ui blue submit button">Log In</button> -->
+            <div class="ui buttons">
+              <a class="ui blue submit button">Log In</a>
+              <div class="or"></div>
+              <a class="ui green button" href="signup.html">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  
+  <!-- <script src="js/jquery-1.11.2.min"></script> -->
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="css/dist/semantic.min.js"></script>
+  <script>
+    (function ($) {
+      $('.ui.form').form({             
+        email: {
+          identifier: 'Email',
+          rules: [{
+            type: 'empty',
+            prompt: 'Please enter your email'
+          },{
+            type: 'email',
+            prompt: 'Please enter a valid email'
+          }]
+        },   
+        password: {
+          identifier: 'Password',
+          rules: [{
+            type: 'empty',
+            prompt: 'Please enter a password'
+          },{
+            type: 'length[6]',
+            prompt: 'Password needs to be at least 6 characters long'
+          }]
+        }
+      }, {
+        on: 'blur',
+        inline: 'true'
+      });
+    }(jQuery));
+  </script>
+</body>
+</html>

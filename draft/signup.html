@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Arcturus BioCloud</title>
+
+  <link href='img/favicon.ico' rel='shortcut icon'>
+  <link href='img/default.png' rel='apple-touch-icon-precomposed'>
+  <link href="css/dist/semantic.min.css" rel="stylesheet" type="text/css"/>
+  <link href="css/main.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body id="main">
+  <div class="signup-form">
+    <div class="ui one column stackable center aligned page grid">
+      <div class="column nine wide">
+        <div class="ui form segment left aligned">
+        
+          <div class="ui icon header blue center aligned">
+            <img src="img/arcturus-logo-shadown.jpg" alt="Arcturus BioCloud logo">
+            <!-- <img src="img/arcturus-logo-flat.png" alt="Arcturus BioCloud logo"> -->
+            <div class="content">
+              Sign Up
+              <div class="sub header">Create your Arcturus BioCloud profile</div>   
+            </div>
+          </div>
+                 
+          <div class="field">
+            <label for="Email">Email</label>
+            <input id="Email" placeholder="Email" type="text">
+          </div>
+      
+          <div class="field">
+            <label for="EmailConfirm">Re-enter email</label>
+            <input id="EmailConfirm" placeholder="Re-enter email" type="text">
+          </div>
+
+          <div class="field">
+            <label for="Password">New password</label>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input id="Password" type="password">
+            </div>
+          </div>
+      
+          <div class="field">
+            <label for="PasswordConfirm">Re-enter password</label>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input id="PasswordConfirm" type="password">
+            </div>
+          </div>
+        
+          <div class="center aligned column">
+            <button class="ui green submit button">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  
+  <!-- <script src="js/jquery-1.11.2.min"></script> -->
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="css/dist/semantic.min.js"></script>
+  <script>
+    (function ($) {
+      $('.ui.form').form({             
+        email: {
+          identifier: 'Email',
+          rules: [{
+            type: 'empty',
+            prompt: 'Please enter your email'
+          },{
+            type: 'email',
+            prompt: 'Please enter a valid email'
+          }]
+        },
+        emailConfirm: {
+          identifier: 'EmailConfirm',
+          rules: [{
+            type: 'match[Email]',
+            prompt: 'Email don\'t match'
+          }]
+        },       
+        password: {
+          identifier: 'Password',
+          rules: [{
+            type: 'empty',
+            prompt: 'Please enter a password'
+          },{
+            type: 'length[6]',
+            prompt: 'Password needs to be at least 6 characters long'
+          }]
+        },       
+        passwordConfirm: {
+          identifier: 'PasswordConfirm',
+          rules: [{
+            type: 'match[Password]',
+            prompt: 'Password don\'t match'
+          }]
+        }
+      }, {
+        on: 'blur',
+        inline: 'true'
+      });
+    }(jQuery));
+  </script>
+</body>
+</html>
