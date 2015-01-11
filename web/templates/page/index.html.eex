@@ -1,17 +1,42 @@
-<%= for notice <- Flash.get_all(@conn, :notice) do %>
-<div class="ui warning small message">
-  <i class="close icon"></i>
-  <div class="header" id="warning-message">
-    <%= notice %>
+<div class="ui page grid">
+  <div class="sixteen wide column">    
+    <div class="ui segment">
+      <div class="ui three column grid">
+        <div class="column">
+          <img class="ui image" src="/images/default.png">
+        </div>
+        <div class="column">
+          <div class="ui large breadcrumb">
+            <div class="active section">Projects</div>
+            <i class="right chevron icon divider"></i>
+            <a class="section">People</a>
+            <i class="right chevron icon divider"></i>
+            <a class="section">Explore</a>
+            <i class="right chevron icon divider"></i>
+            <a class="section">Learning</a>
+          </div>
+        </div>
+        <div class="column right aligned">
+          <%= if @current_user do %>
+            <a href="/logout" data-method="DELETE" rel="nofollow">Logout</a>
+          <% else %>
+            <a href="/login">Login</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <%= for notice <- Flash.get_all(@conn, :notice) do %>
+    <div class="ui warning small message">
+      <i class="close icon"></i>
+      <div class="header" id="warning-message">
+        <%= notice %>
+      </div>
+    </div>
+    <% end %>
+    
   </div>
 </div>
-<% end %>
-
-<%= if @current_user do %>
-  <li><a href="/logout" data-method="DELETE" rel="nofollow">Logout</a></li>
-<% else %>
-  <li><a href="/login">Login</a></li>
-<% end %>
 
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/restfulizer.js"></script>
@@ -23,3 +48,4 @@
     });
   }(jQuery));
 </script>
+

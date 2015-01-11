@@ -1,8 +1,9 @@
 body#main {
-  background-color: #FFFFFF;
-  margin: 0px;
-  padding:0;
-  background:url("/images/bg.jpg") no-repeat left top;
+  margin: 10px 0;
+  padding: 0px;
+  min-width: 278px;
+  background-color: #F7F7F7;
+/*  background:url("/images/bg.jpg") no-repeat left top;*/
 }
 
 .login-form {
