@@ -1,5 +1,25 @@
+<%= for notice <- Flash.get_all(@conn, :notice) do %>
+<div class="ui warning small message">
+  <i class="close icon"></i>
+  <div class="header" id="warning-message">
+    <%= notice %>
+  </div>
+</div>
+<% end %>
+
 <%= if @current_user do %>
   <li><a href="/logout" data-method="DELETE" rel="nofollow">Logout</a></li>
 <% else %>
   <li><a href="/login">Login</a></li>
 <% end %>
+
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/restfulizer.js"></script>
+
+<script>
+  (function ($) {    
+    $(".close.icon").click(function(){
+      $(this).parent().hide();
+    });
+  }(jQuery));
+</script>

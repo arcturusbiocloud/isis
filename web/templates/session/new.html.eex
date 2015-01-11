@@ -40,7 +40,7 @@
                 <!-- <a class="ui blue submit button">Log In</a> -->
                 <input type="submit" class="ui blue button" name="submit" value="Log In"/>
                 <div class="or"></div>
-                <a class="ui green button" href="signup.html">Sign Up</a>
+                <a class="ui green button" href="<%= user_path(:new) %>">Sign Up</a>
               </div>
             </div>
           </form>           

@@ -26,7 +26,7 @@ defmodule Isis.View do
   end
   
   def format_error({k, v}) do
-    {:safe, "<li>#{k} #{v}</li>"}
+    {:safe, "<li>#{String.capitalize(to_string k)} #{Enum.join(v, " and ")}</li>"}
   end
   
 end

@@ -53,6 +53,7 @@ mix test
   * https://github.com/pgr0ss/elixir_experience/blob/master/web/models/docker.ex#L14
   * https://github.com/tjheeta/elixir_web_crawler
   * http://tjheeta.github.io/2014/12/06/elixir-saving-files-on-remote-node.html
+  * https://github.com/adanselm/exrecaptcha
 
 `port 4369, used by epmd (the Erlang Port Mapper Daemon, not Erick and Parrish Making Dollars), must be open for both TCP and UDP (n.b.: this is a default). another port or range of ports for the erlang nodes themselves. These nodes can be set at run time using the -kernel, inet_dist_listen_min and inet_dist_listen_max flags.`
 

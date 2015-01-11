@@ -27,7 +27,7 @@ defmodule Isis.UserTest do
     refute User.get(ctx[:user_params][:email]) |> User.auth?(ctx[:user_params][:password]<>"wrong")
   end
   
-  test "users name and email are unique", ctx do
+  test "user email is unique", ctx do
     assert { :ok, %User{} } = User.create(ctx[:user_params])
     # TODO: assert on { :error, errors } when fixed in model
     assert %Postgrex.Error{} = catch_error(User.create(ctx[:user_params]))

@@ -23,6 +23,7 @@ defmodule Isis.LoginTest do
     find_element(:name, "submit")
     |> click
     assert page_title() == "Arcturus BioCloud - Welcome"
+    assert visible_text({:id, "warning-message"}) == "Logged in as #{ctx[:user_params][:email]}"
     element_id = find_element(:link_text, "Logout")
     assert element_displayed?(element_id) == true
   end
@@ -40,4 +41,39 @@ defmodule Isis.LoginTest do
     assert visible_text({:id, "warning-message"}) == "Please re-enter your password"
   end
   
+  test "can't login again if already logged", ctx do
+    navigate_to(login_path(:new) |> Endpoint.url)
+    assert page_title() == "Arcturus BioCloud - Log In"
+    find_element(:name, "email")
+    |> fill_field(ctx[:user_params][:email])
+    find_element(:name, "password")
+    |> fill_field(ctx[:user_params][:password])
+    find_element(:name, "submit")
+    |> click
+    assert page_title() == "Arcturus BioCloud - Welcome"
+    assert visible_text({:id, "warning-message"}) == "Logged in as #{ctx[:user_params][:email]}"
+    navigate_to(login_path(:new) |> Endpoint.url)
+    assert page_title() == "Arcturus BioCloud - Welcome"
+    element_id = find_element(:link_text, "Logout")
+    assert element_displayed?(element_id) == true
+  end
+  
+  test "logout", ctx do
+    navigate_to(login_path(:new) |> Endpoint.url)
+    assert page_title() == "Arcturus BioCloud - Log In"
+    find_element(:name, "email")
+    |> fill_field(ctx[:user_params][:email])
+    find_element(:name, "password")
+    |> fill_field(ctx[:user_params][:password])
+    find_element(:name, "submit")
+    |> click
+    assert page_title() == "Arcturus BioCloud - Welcome"
+    assert visible_text({:id, "warning-message"}) == "Logged in as #{ctx[:user_params][:email]}"
+    find_element(:link_text, "Logout")
+    |> click
+    assert visible_text({:id, "warning-message"}) == "Logged out"
+    element_id = find_element(:link_text, "Login")
+    assert element_displayed?(element_id) == true
+  end
+   
 end
