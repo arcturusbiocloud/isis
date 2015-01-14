@@ -22,7 +22,7 @@ It communicates with the clusters of robots using the `arcturusbiocloud\horus`
 You need to [download Selenium](http://docs.seleniumhq.org/download/) and start it:
 
 ```
-java -jar selenium-server-standalone-2.42.2.jar
+java -jar selenium-server-standalone-2.44.0.jar
 ```
 
 Fetch the test dependencies using:
