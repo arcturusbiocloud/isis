@@ -1,0 +1,109 @@
+<div class="ui page grid">
+  <div class="sixteen wide column">    
+    <div class="ui segment">
+      <div class="ui three column grid">
+        <div class="column">
+          <img class="ui image" src="/images/default.png">
+        </div>
+        <div class="column">
+          <div class="ui large breadcrumb">
+            <div class="active section">Projects</div>
+            <i class="right chevron icon divider"></i>
+            <a class="section">People</a>
+            <i class="right chevron icon divider"></i>
+            <a class="section">Explore</a>
+            <i class="right chevron icon divider"></i>
+            <a class="section">Learning</a>
+          </div>
+        </div>
+        <div class="column right aligned">
+          <%= if @current_user do %>
+            <a href="/logout" data-method="DELETE" rel="nofollow">Logout</a>
+          <% else %>
+            <a href="/login">Login</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <%= for notice <- Flash.get_all(@conn, :notice) do %>
+    <div class="ui warning small message">
+      <i class="close icon"></i>
+      <div class="header" id="warning-message">
+        <%= notice %>
+      </div>
+    </div>
+    <% end %>
+    
+    <form class="ui form segment left aligned" action="<%= project_path(:create) %>" method="post"> 
+      <h4 class="ui header">Bio project source code</h4>
+      <div class="field">
+        <label></label>
+        <textarea></textarea>
+      </div>
+     
+      <div class="column">
+        <input type="submit" class="ui green button" name="submit" value="Execute"/>
+      </div>
+      
+      <%= if @livestreaming do %>
+      <h4 class="ui header">Output log</h4>
+      <div class="field">
+        <label></label>
+        <textarea readonly></textarea>
+      </div>
+      <h4 class="ui dividing header">Live Streaming</h4>
+      <div id="strobeMediaPlayback">
+        <p>Live Streaming not supported in your browser.</p>
+      </div>
+      <% end %>
+    </form>
+        
+  </div>
+</div>
+
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/restfulizer.js"></script>
+
+<script>
+  (function ($) {    
+    $(".close.icon").click(function(){
+      $(this).parent().hide();
+    });
+  }(jQuery));
+</script>
+
+<%= if @livestreaming do %>
+<script type="text/javascript" src="/js/strobe/lib/swfobject.js"></script>
+<script type="text/javascript">        
+  // Create a StrobeMediaPlayback configuration 
+  var parameters = {  
+                      src: "rtmp://osiris.arcturus.io/flvplayback/myStream",  
+                      autoPlay: true,  
+                      controlBarAutoHide: false,  
+                      playButtonOverlay: true,  
+                      showVideoInfoOverlayOnStartUp: true,  
+                      optimizeBuffering : false,  
+                      initialBufferTime : 0.1,  
+                      expandedBufferTime : 0.1,  
+                      minContinuousPlayback : 0.1,  
+                      streamType: "live",
+                      poster: "/js/strobe/images/poster.png"  
+                    };  
+      
+  // Embed the player SWF:          
+  swfobject.embedSWF
+     ( "/js/strobe/StrobeMediaPlayback.swf"
+     , "strobeMediaPlayback"
+     , 800
+     , 600
+     , "10.1.0"
+     , {}
+     , parameters
+     , { allowFullScreen: "true"}
+     , { name: "strobeMediaPlayback" }
+     );
+</script>
+<% end %>
+
+

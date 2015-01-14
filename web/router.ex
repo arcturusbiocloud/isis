@@ -20,6 +20,7 @@ defmodule Isis.Router do
     delete "/logout", SessionController, :destroy, as: :login
     
     resources "users", UserController, as: :user, only: [:new, :create]
+    resources "projects", ProjectController, as: :project, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

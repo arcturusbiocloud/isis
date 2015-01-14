@@ -35,6 +35,16 @@
     </div>
     <% end %>
     
+    <div class="ui form segment left aligned">     
+      <div class="column">
+        <%= if @current_user do %>
+        <a class="ui green button" href="<%= project_path(:new) %>">New Project</a>
+        <% else %>
+        <h4>Welcome to Arcturus BioCloud. Please <a href="/login">login</a> to create a new project.</h4>
+        <% end %>
+      </div>
+    </div>
+    
   </div>
 </div>
 
