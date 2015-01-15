@@ -21,3 +21,4 @@ config :logger,
   
 config :phoenix, :database,
   url: System.get_env("DATABASE_URL")
+  # url: "ecto://arcturus:ePYQtVfznww9GhMz6Sg9UQ==@arcturus.cinyniivduui.us-west-1.rds.amazonaws.com/isis"
