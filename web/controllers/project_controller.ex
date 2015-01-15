@@ -11,7 +11,7 @@ defmodule Isis.ProjectController do
   end
   
   def create(conn, params) do
-    conn = Flash.put(conn, :notice, "Project create. Check the live streaming.")
+    conn = Flash.put(conn, :notice, "Project created. Arc is working for you. Check the live streaming.")
     messages = Flash.get(conn)
     render conn, "new.html", %{title: "Project Live Streaming", flash_messages: messages, livestreaming: true}
   end
