@@ -4,17 +4,19 @@ Isis
 This project is responsible for manage the project, users, robots and experiments of Arcturus BioCloud.
 It communicates with the clusters of robots using the `arcturusbiocloud\horus`
 
+
 ## Feature Roadmap
 
   - [x] user management
-  - [ ] landing page
+  - [ ] docker/fleetctl based AWS deployment
+  - [ ] live streaming javascript page
+  - [ ] project management 
   - [ ] dashboard
-  - [ ] live streaming javascript page 
+  - [ ] new landing page
   - [ ] development language
   - [ ] development interface
   - [ ] project timeline
   - [ ] social features
-  - [ ] docker/fleetctl based deployment
 
 
 ## Tests
