@@ -8,9 +8,9 @@ It communicates with the clusters of robots using the `arcturusbiocloud\horus`
 ## Feature Roadmap
 
   - [x] user management
-  - [ ] docker/fleetctl based AWS deployment
-  - [ ] live streaming javascript page
-  - [ ] project management 
+  - [x] docker/fleetctl based AWS deployment
+  - [x] live streaming javascript page
+  - [x] project management 
   - [ ] dashboard
   - [ ] new landing page
   - [ ] development language
