@@ -38,18 +38,27 @@ mix test
 
     
 ## How to start
-    mix phoenix.start
+    elixir --sname foo@luisbebop --cookie abcdef -S mix phoenix.start
     
 
 ### Design mockup
   * https://projects.invisionapp.com/share/SX1Y39HEW
 
     
-### Development interface
+### Graphic development interface
   * http://www.jsplumb.org/demo/statemachine/dom.html
   * http://www.vvvvjs.com/start
   * https://github.com/the-grid/the-graph
-
+  
+  
+### Natural language interface
+  * http://torch.ch/
+  * https://github.com/torch/torch7/wiki/Cheatsheet#natural-language-processing
+  * http://arxiv.org/pdf/1103.0398v1.pdf
+  * https://github.com/torch/senna
+  * http://ml.nec-labs.com/senna/#compilation
+  * https://research.facebook.com/blog/879898285375829/fair-open-sources-deep-l20earning-modules-for-torch
+ 
 
 ### Technical notes
   * https://github.com/pgr0ss/elixir_experience/blob/master/web/models/docker.ex#L14
