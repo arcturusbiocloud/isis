@@ -1,10 +1,20 @@
 ### How to build
 
+    boot2docker up # set docker enviroment variables. check the terminal output
     docker build -t arcturusbiocloud/isis .
+    docker push arcturusbiocloud/isis
+    fleetctl submit isis.service
+    fleetctl start isis.service
+    fleetctl list-units
+    fleetctl journal -f isis.service # aka tail -f
+    fleetctl stop isis.service
+    fleetctl destroy isis.service
+    fleetctl list-machines
+    fleetctl ssh ****
     
 ### How to debug
 
-    docker run --name isis -p 4000:4000 -p 4369:4369 -p 9100:9100 -p 9101:9101 -p 9102:9102 -p 9103:9103 -p 9104:9104 -p 9105:9105 -e DATABASE_URL="ecto://arcturus:ePYQtVfznww9GhMz6Sg9UQ==@arcturus.cinyniivduui.us-west-1.rds.amazonaws.com/isis" -e MIX_ENV=prod -e PORT=4000 arcturusbiocloud/isis /sbiny_init --enable-insecure-key -- elixir --erl "-kernel inet_dist_listen_min 9100 -kernel inet_dist_listen_max 9105" --no-halt --cookie qeSwOMmQ+BFt3cMjf1kazeIMRwhy45ySlbvFCuWsRcU= --name "isis@isis.arcturus.io" -pa _build/prod/consolidated -S mix phoenix.server
+    docker run --name isis -p 4000:4000 -p 4369:4369 -p 9100:9100 -p 9101:9101 -p 9102:9102 -p 9103:9103 -p 9104:9104 -p 9105:9105 -e DATABASE_URL=ecto://arcturus:ePYQtVfznww9GhMz6Sg9UQ==@arcturus.cinyniivduui.us-west-1.rds.amazonaws.com/isis -e MIX_ENV=prod -e PORT=4000 arcturusbiocloud/isis /sbiny_init --enable-insecure-key -- elixir --erl "-kernel inet_dist_listen_min 9100 -kernel inet_dist_listen_max 9105" --no-halt --cookie qeSwOMmQ+BFt3cMjf1kazeIMRwhy45ySlbvFCuWsRcU= --name "isis@isis.arcturus.io" -pa _build/prod/consolidated -S mix phoenix.start
     
     docker inspect -f "{{ .NetworkSettings.IPAddress }}" isis
     
@@ -13,9 +23,16 @@
     
     # Login to the container
     ssh -i insecure_key root@<IP address>
+    
+
+### How to create and migrate the database in production for the first time
+    # log in the container using fleetctl ssh and ssh -i insecure_key ... inside the CoreOS
+    cd /isis
+    # the database needs to be already created by mix ecto.create Isis.Repo or another tool
+    MIX_ENV=prod mix ecto.migrate Isis.Repo
 
 
-### How to deploy
+### How to install and configure fleetctl
 
 Install fleetctl
 ```
@@ -51,6 +68,3 @@ Check if everything is working
 MACHINE		IP		METADATA
 eb2d6339...	172.31.9.138	-
 ```
-
-fleetctl submit isis.service
-fleetctl start isis.service

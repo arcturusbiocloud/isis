@@ -48,13 +48,13 @@ RUN chmod 600 /root/.ssh/id_rsa
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
-# Download and install Isis project    
-RUN cd / && git clone git@github.com:arcturusbiocloud/isis.git
 # Trick run the following instructions everytime
 ADD http://www.random.org/strings/?num=10&len=8&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain&rnd=new uuid
+
+# Download and install Isis project    
+RUN cd / && git clone git@github.com:arcturusbiocloud/isis.git
 # Set Isis directory as the start directory
 WORKDIR /isis
-RUN git pull
 RUN MIX_ENV=prod mix do deps.get
 RUN MIX_ENV=prod mix do deps.compile
 RUN MIX_ENV=prod mix compile

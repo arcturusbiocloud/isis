@@ -9,7 +9,7 @@ TimeoutStartSec=0
 Restart=always
 RestartSec=1s
 ExecStartPre=/usr/bin/docker pull arcturusbiocloud/isis:latest
-ExecStart=/usr/bin/docker run --name isis -p 4000:4000 -p 4369:4369 -p 9100:9100 -p 9101:9101 -p 9102:9102 -p 9103:9103 -p 9104:9104 -p 9105:9105 -e DATABASE_URL="ecto://arcturus:ePYQtVfznww9GhMz6Sg9UQ==@arcturus.cinyniivduui.us-west-1.rds.amazonaws.com/isis" -e MIX_ENV=prod -e PORT=4000 arcturusbiocloud/isis /sbin/my_init --enable-insecure-key -- elixir --erl "-kernel inet_dist_listen_min 9100 -kernel inet_dist_listen_max 9105" --no-halt --cookie qeSwOMmQ+BFt3cMjf1kazeIMRwhy45ySlbvFCuWsRcU= --name "isis@isis.arcturus.io" -pa _build/prod/consolidated -S mix phoenix.server
+ExecStart=/usr/bin/docker run --name isis -p 80:4000 -p 4369:4369 -p 9100:9100 -p 9101:9101 -p 9102:9102 -p 9103:9103 -p 9104:9104 -p 9105:9105 -e DATABASE_URL=ecto://arcturus:ePYQtVfznww9GhMz6Sg9UQ==@arcturus.cinyniivduui.us-west-1.rds.amazonaws.com/isis -e MIX_ENV=prod -e PORT=4000 arcturusbiocloud/isis /sbin/my_init --enable-insecure-key -- elixir --erl "-kernel inet_dist_listen_min 9100 -kernel inet_dist_listen_max 9105" --no-halt --cookie qeSwOMmQ+BFt3cMjf1kazeIMRwhy45ySlbvFCuWsRcU= --name "isis@isis.arcturus.io" -pa _build/prod/consolidated -S mix phoenix.start
 ExecStopPre=/usr/bin/docker pull arcturusbiocloud/isis:latest
 ExecStopPre=/usr/bin/docker kill isis
 ExecStop=/usr/bin/docker rm isis
