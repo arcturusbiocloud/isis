@@ -15,4 +15,4 @@ ExecStopPre=/usr/bin/docker kill isis
 ExecStop=/usr/bin/docker rm isis
 
 [X-Fleet]
-X-Conflicts=isis@*.service
+X-Conflicts=isis.service
