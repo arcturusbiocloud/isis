@@ -49,6 +49,7 @@ defmodule Isis.Mixfile do
       {:cowboy, "~> 1.0"},
       {:bcrypt, github: "opscode/erlang-bcrypt"},
       {:postgrex, "~> 0.6.0"},
+      {:horus, git: "git@github.com:arcturusbiocloud/horus.git"},
       {:ecto, "~> 0.2.5"}
     ]
   end

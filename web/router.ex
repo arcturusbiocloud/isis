@@ -1,5 +1,6 @@
 defmodule Isis.Router do
   use Phoenix.Router
+  use Phoenix.Router.Socket, mount: "/ws"
 
   pipeline :browser do
     plug :accepts, ~w(html)
@@ -22,6 +23,8 @@ defmodule Isis.Router do
     resources "users", UserController, as: :user, only: [:new, :create]
     resources "projects", ProjectController, as: :project, only: [:new, :create]
   end
+  
+  channel "robots", Isis.RobotChannel
 
   # Other scopes may use custom stacks.
   # scope "/api", Isis do

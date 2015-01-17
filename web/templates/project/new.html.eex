@@ -50,7 +50,7 @@
       <h4 class="ui header">Output log</h4>
       <div class="field">
         <label></label>
-        <textarea readonly></textarea>
+        <textarea id="console" readonly></textarea>
       </div>
       <h4 class="ui dividing header">Live Streaming</h4>
       <div id="strobeMediaPlayback">
@@ -114,6 +114,25 @@
      , { allowFullScreen: "true"}
      , { name: "strobeMediaPlayback" }
      );
+</script>
+
+<script type="text/javascript" src="/js/phoenix.js"></script>
+<script type="text/javascript">
+  $(function(){  
+    var socket = new Phoenix.Socket("ws://" + location.host +  "/ws");
+    socket.join("robots", "lobby", {}, function(chan){
+      chan.on("join", function(data){
+        console.log(data.status);
+      });
+
+      chan.on("new:msg", function(data){
+        $("textarea#console").append(data.msg);
+        var psconsole = $("textarea#console");
+        if(psconsole.length) psconsole.scrollTop(psconsole[0].scrollHeight - psconsole.height());
+      });
+
+    });
+  });
 </script>
 <% end %>
 
