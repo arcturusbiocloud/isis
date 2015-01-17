@@ -20,7 +20,8 @@ defmodule Isis.RobotChannel do
         IO.puts "No robots connected"
       _ ->
         robot_node = hd(Node.list)
-        proc = Horus.Client.get_shell("ping www.google.com", robot_node)
+        cmd = "/bin/bash /root/horus/robot-scripts/camera/camera-streaming.sh"
+        proc = Horus.Client.get_shell(cmd, robot_node)
         if proc != nil, do: spawn(fn() -> for line <- proc.proc.out do Phoenix.Channel.reply(socket, "new:msg", %{msg: line}) end end)
     end
       

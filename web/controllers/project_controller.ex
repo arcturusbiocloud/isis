@@ -14,16 +14,18 @@ defmodule Isis.ProjectController do
     # talking with the robots on the lab. by now we just have 1 robot
     case Node.list do
       [] ->
-        IO.puts "No robots connected"
+        conn = Flash.put(conn, :warning, "Arc is sleeping. Send a message to my masters at team@arcturus.io")
+        messages = Flash.get(conn)
+        render conn, "new.html", %{title: "Project", flash_messages: messages, livestreaming: false}
       _ ->
         robot_node = hd(Node.list)
-        Horus.Client.stop_shell("ping www.google.com", robot_node)
-        Horus.Client.shell("ping www.google.com", robot_node)
+        cmd = "/bin/bash /root/horus/robot-scripts/camera/camera-streaming.sh"
+        Horus.Client.shell(cmd, robot_node)
+        
+        conn = Flash.put(conn, :notice, "Project created. Arc is working for you. Check the live streaming.")
+        messages = Flash.get(conn)
+        render conn, "new.html", %{title: "Project", flash_messages: messages, livestreaming: true}
     end
-
-    conn = Flash.put(conn, :notice, "Project created. Arc is working for you. Check the live streaming.")
-    messages = Flash.get(conn)
-    render conn, "new.html", %{title: "Project Live Streaming", flash_messages: messages, livestreaming: true}
   end
 
 end

@@ -34,7 +34,7 @@ and then exec the tests:
 mix test
 ```
 
-    
+
 ## How to start
     elixir --sname foo@luisbebop --cookie abcdef -S mix phoenix.start
     

@@ -26,6 +26,15 @@
       </div>
     </div>
     
+    <%= for warning <- Flash.get_all(@conn, :warning) do %>
+    <div class="ui negative small message">
+      <i class="close icon"></i>
+      <div class="header" id="warning-message">
+        <%= warning %>
+      </div>
+    </div>
+    <% end %>
+    
     <%= for notice <- Flash.get_all(@conn, :notice) do %>
     <div class="ui warning small message">
       <i class="close icon"></i>
@@ -34,12 +43,16 @@
       </div>
     </div>
     <% end %>
-    
+        
     <form class="ui form segment left aligned" action="<%= project_path(:create) %>" method="post"> 
-      <h4 class="ui header">Tell to Arc how will be your genetic project</h4>
+      <h4 class="ui header">Tell to Arc how will be your genetic project. Arc understand plain english.</h4>
       <div class="field">
         <label></label>
-        <textarea></textarea>
+        <textarea>Please Arc,
+          
+Mix the plasmid p_GLO with a e.coli bacteria to make it glow, following the Arcturus Glowing Bacteria protocol.
+Send me an email with the pictures and luminescence data every 4 hours.
+After 12 hours delivery the petri dish to my home if the bacteria is glowing, otherwise throw it away.</textarea>
       </div>
      
       <div class="column">
@@ -63,9 +76,9 @@
     <div class="ui segment">
     <img class="ui medium right floated image" src="/images/robot.png">
     <p>&nbsp</p><p>&nbsp</p>
-    <p>Hi! I'm Arc, the robot. I was brought to planet Earth and trained by my masters to help you create amazing genetic experiments that will save your world.</p>
-    <p>In the ancient past, earthly scientists used to do everything by hand using expensive labs, chemicals and complicated machines. Without my help, pain and frustration assolated their postdocs careers and projects.</p>
-    <p>I'm perfect, fast and precise. Using my robot brain, I can even create and manage experiment data for you. I have experience creating glowing bacterias, quantum computers and cup cakes.</p>
+    <p>Hi! I'm Arc, the robot, from the Boötes constellation. I was brought to planet Earth and trained by my masters to help you create amazing genetic experiments that will save your world.</p>
+    <p>In the ancient past, earthly scientists used to do everything by hand using expensive labs, chemicals and complicated primitive machines. Without my help, pain and frustration assolated their postdocs careers and projects.</p>
+    <p>I'm perfect, fast and precise. Using my robot brain, I can even create and manage experiment data for you. I have experience creating glowing bacterias, quantum computers, jellyfishes, and cup cakes.</p>
     <p>Shall we start? Let's create some life together!</p>
     </div>
     <% end %>
@@ -135,5 +148,3 @@
   });
 </script>
 <% end %>
-
-
