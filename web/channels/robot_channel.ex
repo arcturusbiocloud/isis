@@ -24,6 +24,12 @@ defmodule Isis.RobotChannel do
         cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
         # cmd = "/bin/bash /Users/luisbebop/Documents/arcturusbiocloud/horus/robot-scripts/modular-science/experiment.sh"
         # cmd = "ping www.google.com"
+        
+        # we could simple spawn a function make a for loop in the proc.out but we this process is from a remote node.
+        # the code bellow works in local connect nodes but not in remote nodes (https://github.com/elixir-lang/elixir/issues/1520)
+        # proc = Horus.Client.get_shell(cmd, robot_node)
+        # if proc != nil, do: spawn(fn() -> for line <- proc.proc.out do Phoenix.Channel.reply(socket, "new:msg", %{msg: line}) end end)
+        
         spawn(Isis.RobotChannel, :streaming_out, [cmd, robot_node, socket])
         # live streaming
         Horus.Client.camera_streaming(:start, robot_node)
