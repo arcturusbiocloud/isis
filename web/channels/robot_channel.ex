@@ -21,8 +21,9 @@ defmodule Isis.RobotChannel do
       _ ->
         # command
         robot_node = hd(Node.list)
-        # cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
-        cmd = "/bin/bash /Users/luisbebop/Documents/arcturusbiocloud/horus/robot-scripts/modular-science/experiment.sh"
+        cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
+        # cmd = "/bin/bash /Users/luisbebop/Documents/arcturusbiocloud/horus/robot-scripts/modular-science/experiment.sh"
+        # cmd = "ping www.google.com"
         spawn(Isis.RobotChannel, :streaming_out, [cmd, robot_node, socket])
         # live streaming
         Horus.Client.camera_streaming(:start, robot_node)
@@ -33,6 +34,16 @@ defmodule Isis.RobotChannel do
 
   def join(socket, _private_topic, _message) do
     {:error, socket, :unauthorized}
+  end
+  
+  def leave(_message, socket) do
+    robot_node = hd(Node.list)
+    cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
+    # cmd = "/bin/bash /Users/luisbebop/Documents/arcturusbiocloud/horus/robot-scripts/modular-science/experiment.sh"
+    # cmd = "ping www.google.com"
+    Horus.Client.stop_shell(cmd, robot_node)
+    IO.puts "websocket leave and stop the experiment"
+    {:ok, socket}
   end
   
   def streaming_out(cmd, node, socket) do

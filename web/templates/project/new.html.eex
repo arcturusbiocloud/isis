@@ -56,7 +56,11 @@ After 12 hours delivery the petri dish to my home if the bacteria is glowing, ot
       </div>
      
       <div class="column">
+      <%= if @livestreaming do %>
+        <a class="ui red button" href="<%= project_path(:new) %>">Stop</a>
+     <%= else %>
         <input type="submit" class="ui green button" name="submit" value="Execute"/>
+      <% end %>
       </div>
       
       <%= if @livestreaming do %>
