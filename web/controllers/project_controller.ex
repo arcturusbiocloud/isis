@@ -19,7 +19,8 @@ defmodule Isis.ProjectController do
         render conn, "new.html", %{title: "Project", flash_messages: messages, livestreaming: false}
       _ ->
         robot_node = hd(Node.list)
-        cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
+        # cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
+        cmd = "/bin/bash /Users/luisbebop/Documents/arcturusbiocloud/horus/robot-scripts/modular-science/experiment.sh"
         Horus.Client.shell(cmd, robot_node)
                         
         conn = Flash.put(conn, :notice, "Project created. Arc is working for you. Check the live streaming.")

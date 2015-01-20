@@ -21,9 +21,9 @@ defmodule Isis.RobotChannel do
       _ ->
         # command
         robot_node = hd(Node.list)
-        cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
-        proc = Horus.Client.get_shell(cmd, robot_node)
-        if proc != nil, do: spawn(fn() -> for line <- proc.proc.out do Phoenix.Channel.reply(socket, "new:msg", %{msg: line}) end end)
+        # cmd = "/bin/bash /root/horus/robot-scripts/modular-science/experiment.sh"
+        cmd = "/bin/bash /Users/luisbebop/Documents/arcturusbiocloud/horus/robot-scripts/modular-science/experiment.sh"
+        spawn(Isis.RobotChannel, :streaming_out, [cmd, robot_node, socket])
         # live streaming
         Horus.Client.camera_streaming(:start, robot_node)
     end
@@ -34,4 +34,16 @@ defmodule Isis.RobotChannel do
   def join(socket, _private_topic, _message) do
     {:error, socket, :unauthorized}
   end
+  
+  def streaming_out(cmd, node, socket) do
+    out = Horus.Client.get_output(cmd, node)
+    
+    case out do
+      :error ->
+        IO.puts "No more output from the process"
+      {:ok, line} ->
+        Phoenix.Channel.reply(socket, "new:msg", %{msg: line})
+        streaming_out(cmd, node, socket)
+    end
+  end  
 end
